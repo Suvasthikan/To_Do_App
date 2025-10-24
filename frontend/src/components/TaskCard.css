@@ -1,0 +1,143 @@
+.task-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.task-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.task-card:hover::before {
+  transform: scaleY(1);
+}
+
+.task-card:hover {
+  box-shadow: 0 16px 48px rgba(102, 126, 234, 0.15);
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.task-content {
+  flex: 1;
+  min-width: 0;
+  padding-left: 8px;
+}
+
+.task-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+  line-height: 1.4;
+  background: linear-gradient(135deg, #2d3748, #4a5568);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.task-description {
+  font-size: 15px;
+  color: #718096;
+  line-height: 1.6;
+  word-wrap: break-word;
+  font-weight: 500;
+}
+
+.done-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  min-width: 100px;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px rgba(72, 187, 120, 0.3);
+}
+
+.done-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.done-button:hover::before {
+  left: 100%;
+}
+
+.done-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #38a169, #2f855a);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(72, 187, 120, 0.4);
+}
+
+.done-button:active:not(:disabled) {
+  transform: translateY(0) scale(1.02);
+}
+
+.done-button:disabled {
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+  color: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.done-button:disabled::before {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .task-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+  }
+  
+  .task-content {
+    padding-left: 0;
+    margin-bottom: 16px;
+  }
+  
+  .done-button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
